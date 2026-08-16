@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wars — Just Mining, Inc.</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+background: #0a0a0a; color: #f0f0f0;
+min-height: 100vh; display: flex; flex-direction: column; align-items: center;
+}
+.container { max-width: 720px; width: 100%; padding: 40px 20px; }
+.nav {
+display: flex; justify-content: center; gap: 24px;
+padding: 16px 20px; background: #111; border-bottom: 1px solid #1e1e1e; width: 100%;
+}
+.nav a { color: #8a8a8a; text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: 0.3s; position: relative; }
+.nav a:hover { color: #f7931a; }
+.nav a.active { color: #f7931a; }
+.nav a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: #f7931a; transition: width 0.3s; }
+.nav a:hover::after, .nav a.active::after { width: 100%; }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
+.fade-in { opacity: 0; animation: fadeUp 0.6s ease forwards; }
+
+h1 {
+font-size: 2.2rem; font-weight: 800; margin-bottom: 8px;
+background: linear-gradient(135deg, #f7931a, #fbbf24);
+-webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.subtitle { color: #9aa3b2; font-size: 1rem; margin-bottom: 32px; }
+
+.war-card {
+background: #111; border: 1px solid #222; border-radius: 12px;
+padding: 22px; margin-bottom: 14px; transition: 0.3s;
+}
+.war-card:hover { border-color: #f7931a; }
+.war-card .top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.war-card h2 { font-size: 1.05rem; }
+.war-card .status {
+font-size: 0.75rem; font-weight: 600; padding: 3px 10px; border-radius: 10px;
+}
+.war-card .status.won { background: #052e16; color: #22c55e; border: 1px solid #22c55e33; }
+.war-card .status.lost { background: #2e0505; color: #ef4444; border: 1px solid #ef444433; }
+.war-card .status.upcoming { background: #1a1206; color: #fbbf24; border: 1px solid #fbbf2433; }
+.war-card .details { display: flex; gap: 20px; font-size: 0.85rem; color: #9aa3b2; flex-wrap: wrap; }
+.war-card .details span strong { color: #e0e0e0; }
+.war-card .reward { margin-top: 10px; font-size: 0.85rem; color: #f7931a; font-weight: 600; }
+
+.how-it-works {
+background: linear-gradient(135deg, #1a1206, #111);
+border: 1px solid #f7931a22; border-radius: 12px; padding: 24px; margin: 28px 0;
+}
+.how-it-works h2 { color: #f7931a; font-size: 1.15rem; margin-bottom: 12px; }
+.how-it-works p { color: #c4c4c4; line-height: 1.7; font-size: 0.92rem; margin-bottom: 10px; }
+.how-it-works ul { list-style: none; padding: 0; margin: 10px 0 0; }
+.how-it-works ul li { color: #c4c4c4; padding: 5px 0; font-size: 0.9rem; padding-left: 22px; position: relative; }
+.how-it-works ul li::before { content: '⚔️'; position: absolute; left: 0; font-size: 0.8rem; }
+
+.placeholder {
+background: #111; border: 1px dashed #333; border-radius: 12px;
+padding: 24px; text-align: center; color: #8a8a8a; font-size: 0.88rem; line-height: 1.6; margin-top: 14px;
+}
+.placeholder strong { color: #f7931a; }
+
+.footer { text-align: center; color: #555; font-size: 0.8rem; padding: 32px 20px 40px; width: 100%; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+<a href="index.html">Home</a>
+<a href="about.html">About</a>
+<a href="roster.html">Roster</a>
+<a href="recruit.html">Recruit</a>
+<a href="wars.html" class="active">Wars</a>
+</nav>
+
+<div class="container">
+<div class="fade-in">
+<h1>War Schedule</h1>
+<p class="subtitle">Recent results and upcoming rounds.</p>
+
+<div class="war-card">
+<div class="top">
+<h2>vs [Clan Name]</h2>
+<span class="status upcoming">Upcoming</span>
+</div>
+<div class="details">
+<span><strong>[League]</strong> League</span>
+<span>Starts: <strong>[Date/Time]</strong></span>
+<span>Round: <strong>[X]</strong></span>
+</div>
+<div class="reward">Reward pool: [BTC amount]</div>
+</div>
+
+<div class="war-card">
+<div class="top">
+<h2>vs [Clan Name]</h2>
+<span class="status won">Won</span>
+</div>
+<div class="details">
+<span><strong>[League]</strong> League</span>
+<span>Completed: <strong>[Date]</strong></span>
+<span>Score: <strong>[W] – [L]</strong></span>
+</div>
+<div class="reward">Earned: [BTC amount]</div>
+</div>
+
+<div class="war-card">
+<div class="top">
+<h2>vs [Clan Name]</h2>
+<span class="status lost">Lost</span>
+</div>
+<div class="details">
+<span><strong>[League]</strong> League</span>
+<span>Completed: <strong>[Date]</strong></span>
+<span>Score: <strong>[W] – [L]</strong></span>
+</div>
+<div class="reward">Earned: [BTC amount]</div>
+</div>
+
+<div class="how-it-works">
+<h2>How Wars Work</h2>
+<p>
+Miner Wars rounds are tied to <strong>real Bitcoin blocks</strong>. When a round starts,
+our clan competes against another for points. Points come from a public formula based on
+our members' hash power, energy efficiency, and spell usage.
+</p>
+<ul>
+<li><strong>Rounds</strong> — run on the Bitcoin block schedule</li>
+<li><strong>Cycles</strong> — leagues reshuffle every cycle based on performance</li>
+<li><strong>Spells</strong> — coordinated by officers in our chat for maximum impact</li>
+<li><strong>Rewards</strong> — real BTC, split by contribution</li>
+</ul>
+</div>
+
+<div class="placeholder">
+<strong>Template wars listed above.</strong><br>
+Give me your recent war results and upcoming schedule — I'll fill in the real data.
+</div>
+</div>
+</div>
+
+<div class="footer">
+<p>Just Mining, Inc. — no drama, just mining. ⛏️</p>
+</div>
+
+</body>
+</html>
